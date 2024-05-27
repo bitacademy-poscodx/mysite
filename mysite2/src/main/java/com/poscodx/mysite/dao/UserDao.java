@@ -76,4 +76,8 @@ public class UserDao {
 		
 		return result;
 	}
+
+	public UserVo findByNo(Long no) {
+		return null;
+	}
 }
