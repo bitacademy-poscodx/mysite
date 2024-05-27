@@ -54,3 +54,10 @@
 	</div>
 </body>
 </html>
+<%
+	if("success".equals(request.getParameter("result"))) {
+%>
+	<script>alert('성공적으로 수정 하였습니다.')</script>
+<%
+	}
+%>	
