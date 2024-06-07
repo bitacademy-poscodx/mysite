@@ -1,5 +1,3 @@
-
-
 -- guestbook_log
 update guestbook_log set count = count + 1 where date = current_date();
 insert into guestbook_log values(current_date(), 1);
