@@ -8,3 +8,4 @@ select no, name from user where email = 'kickscar@gmail.com' and password=passwo
 
 -- test
 select * from user; 
+
