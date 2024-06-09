@@ -21,7 +21,7 @@ public class GuestbookRepository {
 	}	
 
 	public GuestbookVo findByNo(Long no) {
-		return sqlSession.selectOne("guestbook.findByNo");
+		return sqlSession.selectOne("guestbook.findByNo", no);
 	}
 	
 	public int deleteByNoAndPassword(Long no, String password) {
