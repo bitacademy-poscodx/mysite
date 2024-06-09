@@ -15,6 +15,14 @@ public class GuestbookRepository {
 	public GuestbookRepository(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+
+	public List<GuestbookVo> findAll() {
+		return sqlSession.selectList("guestbook.findAll");
+	}	
+
+	public GuestbookVo findByNo(Long no) {
+		return sqlSession.selectOne("guestbook.findByNo");
+	}
 	
 	public int deleteByNoAndPassword(Long no, String password) {
 		return sqlSession.delete("guestbook.deleteByNoAndPassword", Map.of("no", no, "password", password));
@@ -23,8 +31,4 @@ public class GuestbookRepository {
 	public int insert(GuestbookVo vo) {
 		return sqlSession.insert("guestbook.insert", vo);
 	}
-	
-	public List<GuestbookVo> findAll() {
-		return sqlSession.selectList("guestbook.findAll");
-	}	
 }
