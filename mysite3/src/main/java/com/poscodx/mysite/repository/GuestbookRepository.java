@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StopWatch;
 
 import com.poscodx.mysite.vo.GuestbookVo;
 
