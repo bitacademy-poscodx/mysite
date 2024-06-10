@@ -47,49 +47,49 @@ public class BoardController {
 		return "board/view";
 	}
 	
+	@Auth
 	@RequestMapping("/delete/{no}")
 	public String delete(
 		HttpSession session,
 		@PathVariable("no") Long boardNo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {		
-		// access control
+
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/";
 		}
-		////////////////////////
 		
 		boardService.deleteContents(boardNo, authUser.getNo());
 		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
 	}
 	
+	@Auth
 	@RequestMapping("/modify/{no}")	
 	public String modify(HttpSession session, @PathVariable("no") Long no, Model model) {
-		// access control
+
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/";
 		}
-		////////////////////////
 		
 		BoardVo boardVo = boardService.getContents(no, authUser.getNo());
 		model.addAttribute("boardVo", boardVo);
 		return "board/modify";
 	}
 
+	@Auth
 	@RequestMapping(value="/modify", method=RequestMethod.POST)	
 	public String modify(
 		HttpSession session, 
 		BoardVo boardVo,
 		@RequestParam(value="p", required=true, defaultValue="1") Integer page,
 		@RequestParam(value="kwd", required=true, defaultValue="") String keyword) {		
-		// access control
+
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/";
 		}
-		////////////////////////
 		
 		boardVo.setUserNo(authUser.getNo());
 		boardService.modifyContents(boardVo);
@@ -104,6 +104,7 @@ public class BoardController {
 		return "board/write";
 	}
 
+	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)	
 	public String write(
 		HttpSession session,
@@ -123,19 +124,9 @@ public class BoardController {
 		return	"redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
 	}
 
-
+	@Auth
 	@RequestMapping(value="/reply/{no}")	
-	public String reply(
-		HttpSession session,
-		@PathVariable("no") Long no,
-		Model model) {
-		// access control
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		////////////////////////
-		
+	public String reply(@PathVariable("no") Long no, Model model) {
 		BoardVo boardVo = boardService.getContents(no);
 		boardVo.setOrderNo(boardVo.getOrderNo() + 1);
 		boardVo.setDepth(boardVo.getDepth() + 1);
