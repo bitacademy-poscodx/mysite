@@ -16,6 +16,8 @@
 			<div id="content">
 				<div id="site-form">
 					<form method="post" action="${pageContext.request.contextPath }/admin/main/update" enctype="multipart/form-data">
+						<input type="hidden" name="profile" value="${sitevo.profile }" />
+
 						<label class="block-label" for="title">사이트 타이틀</label>
 						<input id="title" name="title" type="text" value="${sitevo.title }">
 						
@@ -23,7 +25,7 @@
 						<input id="welcomeMessage" name="welcomeMessage" type="text" value="${sitevo.welcome }">
 
 						<label class="block-label">프로필 이미지</label>
-						<img id="profile" src="${pageContext.request.contextPath }/${sitevo.profile }">
+						<img id="profile" src="${pageContext.request.contextPath }${sitevo.profile }">
 						<input type="file" name="file1">
 
 						<label class="block-label">사이트 설명</label>
