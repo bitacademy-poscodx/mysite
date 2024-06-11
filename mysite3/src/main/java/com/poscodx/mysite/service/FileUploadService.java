@@ -23,7 +23,7 @@ public class FileUploadService {
 				uploadDirectory.mkdirs();
 			}
 			
-			if(file.isEmpty()) {
+			if(file == null || file.isEmpty()) {
 				return url;
 			}
 			
