@@ -32,10 +32,7 @@
 						<textarea name="description">${sitevo.description }</textarea>
 						
 						<input type="submit" value="변경" />
-					</form>
-									
-				
-
+					</form>									
 				</div>
 			</div>
 			<c:import url="/WEB-INF/views/admin/include/navigation.jsp">
