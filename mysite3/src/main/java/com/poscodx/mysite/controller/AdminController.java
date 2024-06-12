@@ -31,7 +31,6 @@ public class AdminController {
 	public String main(Model model) {
 		SiteVo vo = siteService.getSite();
 		model.addAttribute("siteVo", vo);
-		
 		return "admin/main";
 	}
 
