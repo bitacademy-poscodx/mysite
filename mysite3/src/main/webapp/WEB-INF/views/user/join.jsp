@@ -27,8 +27,6 @@ $(function() {
 				console.error(err);			
 			},
 			success: function(response) {
-				console.log(response);
-				
 				if(response.result == "fail") {
 					console.error(response.message);
 					return;
