@@ -26,7 +26,8 @@ $(function() {
 			error: function(xhr, status, err){
 				console.error(err);			
 			},
-			success: function(response){
+			success: function(response) {
+				
 				if(response.exist) {
 					alert("존재하는 이메일입니다. 다른 이메일을 사용해 주세요.");
 					$("#email").val("");
