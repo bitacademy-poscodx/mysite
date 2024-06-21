@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.ExceptionHandlingConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,6 +39,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	http
+    		.logout()
+    		.logoutUrl("/user/logout")
+    		.and()
+    		
        		.formLogin()
        		.loginPage("/user/login")
        		.loginProcessingUrl("/user/auth")
@@ -52,12 +58,21 @@ public class SecurityConfig {
        		.authorizeHttpRequests(registry -> {
        			registry
        				/* ACL */
-       				.requestMatchers(new RegexRequestMatcher("^/user/update$", null))
-       				.hasAnyRole("ADMIN", "USER")
+   					.requestMatchers(new RegexRequestMatcher("^/admin/?.*$", null))
+   					.hasRole("ADMIN")
+
+   					.requestMatchers(new RegexRequestMatcher("^/board/?(write|reply|delete|modify)?/.*$", null))
+   					.hasAnyRole("ADMIN", "USER")
+
+   					.requestMatchers(new RegexRequestMatcher("^/user/update$", null))
+   					.hasAnyRole("ADMIN", "USER")
        	       		
        				.anyRequest()
        	       		.permitAll();
 			});
+//       		.exceptionHandling(exceptionHandlingConfigurer -> {
+//       			exceptionHandlingConfigurer.accessDeniedPage("/WEB-INF/views/error/403.jsp")
+//			});
        	
     	return http.build();
     }
