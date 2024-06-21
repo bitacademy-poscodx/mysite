@@ -43,9 +43,12 @@ public class SecurityConfig {
        		.usernameParameter("email")
        		.passwordParameter("password")
        		.defaultSuccessUrl("/")
-       		.failureUrl("/user/login")
+       		.failureUrl("/user/login?result=fail")
        		.and()
        		
+       		.csrf()
+       		.disable()
+    	
        		.authorizeHttpRequests(registry -> {
        			registry
        				/* ACL */
