@@ -112,8 +112,8 @@
 2. Framework
    - Spring Framework
    - Spring Boot **
-   - application.yml **
-   - Java-Based Fine Configuration **
+   - application.yml(미세설정) **
+   - Java-Based Configuration (미세설정) **
    - Spring @PropertySource Annotation Based on Environment
 3. MVC
    - Spring MVC
