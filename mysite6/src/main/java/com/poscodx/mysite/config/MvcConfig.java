@@ -57,5 +57,5 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Bean
 	public ApplicationContextEventListener applicationContextEventListener() {
 		return new ApplicationContextEventListener();
-	}	
+	}
 }
