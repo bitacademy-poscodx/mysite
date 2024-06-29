@@ -11,10 +11,10 @@
 		<div id="wrapper">
 			<div id="content">
 				<div id="site-introduction">
-					<img id="profile" th:src="@{(${servletContext.getAttribute('siteVo').profile})}">
+					<img id="profile" th:src="@{(${servletContext.getAttribute('sitevo').profile})}">
 					<h2 th:text="${servletContext.getAttribute('siteVo').welcome}"></h2>
 					<p>
-						<th:block th:text="${#strings.replace(servletContext.getAttribute('siteVo').description, '\n', '<br>')}"/>
+						<th:block th:text="${#strings.replace(servletContext.getAttribute('sitevo').description, '\n', '<br>')}"/>
 						<br><br>
 						<a th:href="@{/guestbook}">방명록</a>에 글 남기기<br>
 					</p>
