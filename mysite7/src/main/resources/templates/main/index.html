@@ -11,8 +11,8 @@
 		<div id="wrapper">
 			<div id="content">
 				<div id="site-introduction">
-					<img id="profile" th:src="@{(${servletContext.getAttribute('sitevo').profile})}">
-					<h2 th:text="${servletContext.getAttribute('siteVo').welcome}"></h2>
+					<img id="profile" style="width:600px" th:src="@{(${servletContext.getAttribute('sitevo').profile})}">
+					<h2 th:text="${servletContext.getAttribute('sitevo').welcome}"></h2>
 					<p>
 						<th:block th:text="${#strings.replace(servletContext.getAttribute('sitevo').description, '\n', '<br>')}"/>
 						<br><br>
